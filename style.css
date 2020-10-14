@@ -4,7 +4,6 @@
 :root {
 	--first-color: #fbc524;
 	--white-color: #e9eaec;
-	--dark-color: #023059;
 	--dark-color-lighten: #f2f5ff;
 
 	/* --body-font: 'Poppins', sans_serif; */
@@ -24,6 +23,49 @@ body {
 	padding: 0;
 	font-family: "Nunito", sans-serif;
 	font-size: var(--normal-font-size);
+	background-color: var(--dark-color-lighten);
+}
+
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes shadow-drop-center {
+	0% {
+		box-shadow: 0 0 0 0 transparent;
+	}
+	100% {
+		box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.35);
+	}
+}
+
+@keyframes heartbeat {
+	from {
+		transform: scale(1);
+		transform-origin: center center;
+		animation-timing-function: ease-out;
+	}
+	10% {
+		transform: scale(0.91);
+		animation-timing-function: ease-in;
+	}
+	17% {
+		transform: scale(0.98);
+		animation-timing-function: ease-out;
+	}
+	33% {
+		transform: scale(0.87);
+		animation-timing-function: ease-in;
+	}
+	45% {
+		transform: scale(1);
+		animation-timing-function: ease-out;
+	}
 }
 
 h1,
@@ -46,13 +88,18 @@ svg {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: var(--dark-color-lighten);
+	animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
 .card {
 	width: 400px;
 	height: 320px;
-	background-color: var(--dark-color);
+	background: rgb(2, 48, 89);
+	background: linear-gradient(
+		140deg,
+		rgba(2, 48, 89, 1) 0%,
+		rgba(3, 52, 115, 1) 100%
+	);
 	border-radius: 1rem;
 	padding: 4rem 2rem 0;
 	color: var(--white-color);
@@ -104,6 +151,7 @@ svg {
 .card_button:hover,
 .card_button:focus {
 	box-shadow: 0 18px 40px -12px rgba(242, 162, 12, 0.35);
+	animation: heartbeat 1.5s ease-in-out infinite both;
 }
 
 .card_svg,
@@ -130,4 +178,8 @@ svg {
 .card:hover .card_button {
 	transition-delay: 0.2s;
 	opacity: 1;
+}
+
+.card:hover {
+	animation: shadow-drop-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
